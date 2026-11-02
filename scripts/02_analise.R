@@ -117,17 +117,15 @@ g2 <- ggplot(dados_g2, aes(x = year, y = share, color = pais)) +
   ) +
   scale_color_manual(values = cores) +
   scale_x_continuous(breaks = seq(2000, 2025, 5),
-                     expand = expansion(mult = c(0.02, 0.02))) +
+                     expand = expansion(mult = c(0.02, 0.3))) +   # espaço p/ rótulos
   scale_y_continuous(labels = pct, limits = c(0, NA),
                      expand = expansion(mult = c(0, 0.05))) +
-  coord_cartesian(clip = "off") +
   labs(
     title    = "Para quem o Brasil vende?",
     subtitle = "Participação dos 5 maiores destinos de 2025 nas exportações, 2000–2025",
     x = NULL, y = "Participação nas exportações", caption = fonte
   ) +
-  tema_portfolio() +
-  theme(plot.margin = margin(15, 95, 10, 15))   # espaço para os rótulos
+  tema_portfolio()
 
 ggsave("graficos/02_principais_destinos.png", g2,
        width = 9, height = 5.5, dpi = 200)
@@ -148,8 +146,8 @@ g3 <- ggplot(hhi, aes(x = year, y = hhi)) +
   scale_y_continuous(labels = label_number(big.mark = ".", decimal.mark = ","),
                      limits = c(0, 1450), expand = expansion(mult = c(0, 0))) +
   labs(
-    title    = "As exportações brasileiras ficaram mais concentradas",
-    subtitle = "Índice HHI por país de destino, 2000–2025 (quanto maior, mais concentrado)",
+    title    = "Concentração das exportações brasileiras por destino",
+    subtitle = "HHI calculado sobre todos os países de destino, 2000–2025\n(quanto maior, mais concentradas as vendas em poucos países)",
     x = NULL, y = "HHI (0 a 10.000)", caption = fonte
   ) +
   tema_portfolio()
